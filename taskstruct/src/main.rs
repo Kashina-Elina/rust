@@ -60,13 +60,17 @@ fn main() {
         }
     }
     else if input.to_lowercase().starts_with("people"){
-        println!("Сотрудники комании {:?}", company);
+        let mut sorted_departments: Vec<_> = company.iter().collect();
+            sorted_departments.sort_by_key(|&(department, _)| department);
+            for (department, employees) in sorted_departments {
+                let mut sorted_employees = employees.clone();
+                sorted_employees.sort();
+                println!("Отдел {}: {:?}", department, sorted_employees);
+            }
     }
     else if input.to_lowercase().starts_with("quit"){
         break;
         }
     
 }
-
-    
 }
